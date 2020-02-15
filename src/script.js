@@ -1,7 +1,11 @@
 
 // Globals ---------------------------------------------------------------------
 
+
+
+// var protocol = location.protocol
 var base_url = 'http://192.168.0.1/';
+
 var network_list;
 var public_key;
 var rsa = new RSAKey(); // requires rsa-utils/
@@ -39,6 +43,7 @@ var public_key_callback = {
   },
   error: function(error, resp){
     console.log(error);
+    console.log("Error fetching the public-key page");
     window.alert('There was a problem fetching important information from your device. Please verify your connection to the device and try again.');
     enableButtons();
     initialButton.innerHTML = "Retry";
@@ -52,6 +57,7 @@ var claim_code_callback = {
   },
   error: function(error, resp){
     console.log(error);
+    console.log("error on 59");
     window.alert('There was a problem writing important information to your device. Please verify your connection to the device and try again.');
     enableButtons();
     initialButton.innerHTML = "Retry";
@@ -68,6 +74,7 @@ var device_id_callback = {
   },
   error: function(error, resp){
     console.log(error);
+    console.log("error on 76");
     var msg = 'COMMUNICATION_ERROR';
     deviceID.value = msg;
     window.alert('There was a problem fetching important information from your device. Please verify your connection to the device and try again.');
@@ -241,6 +248,7 @@ var toggleShow = function(){
 
 var getRequest = function(url, callback){
   var xmlhttp = new XMLHttpRequest();
+
   xmlhttp.open('GET', url, true); //true specifies async
   xmlhttp.timeout = 8000; // Long timeout needed for scan-ap
   xmlhttp.send();
